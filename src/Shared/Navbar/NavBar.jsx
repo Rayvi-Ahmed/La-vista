@@ -1,17 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
 
     const navOption =
         <>
-            <li><a>Picchi</a></li>
-            <li tabIndex={0}>
-                <a>
-                    Lacchi
-                    <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-                </a>
-            </li>
-            <li><a>Kacchi</a></li>
+            <li><Link to={'/'}>Home</Link></li>
+            <li><Link to={'/menu'}>Menu</Link></li>
         </>
     return (
         <div className="navbar fixed z-10 bg-opacity-20 bg-black text-white max-w-screen-xl">
