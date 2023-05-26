@@ -62,7 +62,7 @@ const Menu = () => {
                 subHeading={"Here we some offer popular items"}
                 heading={"Popular"}
             ></SectionTitle>
-            <MenuCategory item={popular} img={img} title={'Pizza'}></MenuCategory>
+            <MenuCategory item={popular} img={img} title={'Popular item'}></MenuCategory>
 
 
             {/* Salad */}
@@ -70,7 +70,7 @@ const Menu = () => {
                 subHeading={"Continantal salad"}
                 heading={"Salad item"}
             ></SectionTitle>
-            <MenuCategory item={salad} img={saladImg} title={'Slad'}></MenuCategory>
+            <MenuCategory item={salad} img={saladImg} title={'Salad'}></MenuCategory>
 
         </div>
     );
