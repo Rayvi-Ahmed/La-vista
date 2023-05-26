@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MenuCard from "../../Home/MetuItems/MenuCard/MenuCard";
 import Cover from "../Cover/Cover";
 
@@ -14,7 +15,7 @@ const MenuCategory = ({ item, title, img }) => {
                     ></MenuCard>)
                 }
             </div>
-
+            <Link to={`/order/${title}`}><button className="btn btn-outline border-0 border-b-4">Order Food</button></Link>
         </div>
     );
 };
