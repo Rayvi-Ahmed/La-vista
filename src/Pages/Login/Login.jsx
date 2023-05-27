@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 
 const Login = () => {
+    const captuaRef = useRef(null)
+    const [disabled, setDisabled] = useState(true)
     useEffect(() => {
         loadCaptchaEnginge(6);
     })
@@ -11,11 +13,17 @@ const Login = () => {
         const form = e.target
         const email = form.email.value
         const password = form.password.value
-        const captha = form.captha.value
-        console.log(email, password, captha)
+        console.log(email, password)
         form.reset()
-
-
+    }
+    const handleCaptuaValid = () => {
+        const user_captha_value = captuaRef.current.value
+        if (validateCaptcha(user_captha_value)) {
+            setDisabled(false)
+            alert('Captha is valid')
+        } else {
+            alert('Invalid Captha')
+        }
     }
     return (
         <div>
@@ -40,7 +48,8 @@ const Login = () => {
                                 </label>
                                 <input name='password' type="text" placeholder="password" className="input input-bordered" />
                                 <LoadCanvasTemplate />
-                                <input name='captha' type="text" placeholder="password" className="input input-bordered" />
+                                <input name='captha' ref={captuaRef} type="text" placeholder="type the captha" className="input input-bordered" />
+                                <button onClick={handleCaptuaValid} className="btn btn-outline btn-xs mt-3">Validate</button>
 
 
                                 <label className="label">
@@ -48,7 +57,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button disabled={disabled} className="btn btn-primary">Login</button>
                             </div>
                         </form>
                     </div>
