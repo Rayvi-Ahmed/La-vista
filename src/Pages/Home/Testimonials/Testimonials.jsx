@@ -13,7 +13,7 @@ const Testimonials = () => {
     const [reviwe, setReviwe] = useState([])
 
     useEffect(() => {
-        fetch('review.json')
+        fetch('http://localhost:5000/review')
             .then(res => res.json())
             .then(data => setReviwe(data))
     }, [])

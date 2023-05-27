@@ -40,19 +40,19 @@ const Order = () => {
                     <OrderTab item={soup}></OrderTab>
                 </TabPanel>
                 <TabPanel>
+                    <OrderTab item={desert}></OrderTab>
+                </TabPanel>
+                <TabPanel>
                     <OrderTab item={pizza}></OrderTab>
                 </TabPanel>
                 <TabPanel>
                     <OrderTab item={salad}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab item={desert}></OrderTab>
+                    <OrderTab item={popular}></OrderTab>
                 </TabPanel>
                 <TabPanel>
                     <OrderTab item={drinks}></OrderTab>
-                </TabPanel>
-                <TabPanel>
-                    <OrderTab item={popular}></OrderTab>
                 </TabPanel>
             </Tabs>
 
