@@ -1,12 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import AuthProvider, { AuthContext } from '../../Provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import Swal from 'sweetalert2'
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true)
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/'
 
     const { SignIn } = useContext(AuthContext)
 
@@ -33,7 +37,9 @@ const Login = () => {
                     hideClass: {
                         popup: 'animate__animated animate__fadeOutUp'
                     }
+
                 })
+                navigate(from, { replace: true })
             })
     }
     const handleCaptuaValid = (e) => {

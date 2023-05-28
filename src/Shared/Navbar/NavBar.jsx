@@ -14,6 +14,7 @@ const NavBar = () => {
             <li><Link to={'/'}>Home</Link></li>
             <li><Link to={'/menu'}>Menu</Link></li>
             <li><Link to={'/order/soup'}>Order</Link></li>
+            <li><Link to={'/secrate'}>Secrate</Link></li>
 
             {user ? <button onClick={handleLogout} className="btn btn-active bg-slate-400">Log out</button> : <li><Link to={'/login'}>Log In</Link></li>
             }
