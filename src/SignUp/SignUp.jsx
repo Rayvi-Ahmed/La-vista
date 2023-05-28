@@ -1,10 +1,21 @@
 
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../Provider/AuthProvider";
 const SignUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-    const onSubmit = data => console.log(data);
+    const { createUser } = useContext(AuthContext)
 
+
+    const onSubmit = data => {
+        console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+            })
+    }
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -32,9 +43,10 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input {...register("password", { required: true, maxLength: 20, minLength: 8 },)} type="password" placeholder="password" className="input input-bordered" />
+                            <input {...register("password", { required: true, maxLength: 20, minLength: 8, pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/ })} type="password" placeholder="password" className="input input-bordered" />
                             {errors.password?.type === "required" && <span className="text-red-500">Password must required</span>}
                             {errors.password?.type === "minLength" && <span className="text-red-500">Password must be 8 charecter</span>}
+                            {errors.password?.type === "pattern" && <span className="text-red-500">Password must have one uppercase,one lower case & one special charecter to secured mostly</span>}
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>

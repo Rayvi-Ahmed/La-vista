@@ -3,12 +3,12 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import AuthProvider, { AuthContext } from '../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
+import Swal from 'sweetalert2'
 
 const Login = () => {
-    const captuaRef = useRef(null)
     const [disabled, setDisabled] = useState(true)
 
-    const { signIn } = useContext(AuthContext)
+    const { SignIn } = useContext(AuthContext)
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -20,15 +20,24 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
         console.log(email, password)
-        form.reset()
-        signIn(email, password)
+
+        SignIn(email, password)
             .then(result => {
                 const user = result.user
                 console.log(user)
+                Swal.fire({
+                    title: 'User Login Successfull',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
             })
     }
-    const handleCaptuaValid = () => {
-        const user_captha_value = captuaRef.current.value
+    const handleCaptuaValid = (e) => {
+        const user_captha_value = e.target.value
         if (validateCaptcha(user_captha_value)) {
             setDisabled(false)
             alert('Captha is valid')
@@ -59,9 +68,7 @@ const Login = () => {
                                 </label>
                                 <input name='password' type="text" placeholder="password" className="input input-bordered" />
                                 <LoadCanvasTemplate />
-                                <input name='captha' ref={captuaRef} type="text" placeholder="type the captha" className="input input-bordered" />
-                                <button onClick={handleCaptuaValid} className="btn btn-outline btn-xs mt-3">Validate</button>
-
+                                <input onBlur={handleCaptuaValid} name='captha' type="text" placeholder="type the captha" className="input input-bordered" />
 
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
