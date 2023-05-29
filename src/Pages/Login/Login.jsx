@@ -81,7 +81,7 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button disabled={disabled} className="btn btn-primary">Login</button>
+                                <button disabled={false} className="btn btn-primary">Login</button>
                             </div>
                         </form>
                         <p className='text-center p-4 my-3'><small>Are you new this website <Link className='forn-bold' to={'/signUp'}>please sign up now </Link> </small></p>
