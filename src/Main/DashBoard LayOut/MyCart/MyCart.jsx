@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const MyCart = () => {
     const [cart, refetch] = UseCart()
+    console.log(cart)
     const total = cart.reduce((sum, item) => item.price + sum, 0)
 
     const handleDelete = item => {
@@ -18,7 +19,7 @@ const MyCart = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/carts?${item._id}`, {
+                    fetch(`http://localhost:5000/carts/${item._id}`, {
                         method: "DELETE",
                     })
                         .then(res => res.json())
@@ -35,8 +36,6 @@ const MyCart = () => {
                         })
                 }
             })
-
-
     }
     return (
         <div>
@@ -56,6 +55,7 @@ const MyCart = () => {
                         </tr>
                     </thead>
                     <tbody>
+
                         {
                             cart.map((item, index) => <tr
                                 key={item._id}
