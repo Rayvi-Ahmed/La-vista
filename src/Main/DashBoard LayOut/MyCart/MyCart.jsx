@@ -61,9 +61,9 @@ const MyCart = () => {
                             cart.map((item, index) => <tr
                                 key={item._id}
                             >
-                                <td>
+                                <th>
                                     {index + 1}
-                                </td>
+                                </th>
                                 <td>
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">

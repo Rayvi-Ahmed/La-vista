@@ -11,6 +11,7 @@ import Secrate from "../../Secrate/Secrate";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import Dashboard from "../../Main/DashBoard LayOut/Dashboard";
 import MyCart from "../../Main/DashBoard LayOut/MyCart/MyCart";
+import AllUsers from "../../Main/DashBoard LayOut/AllUsers/AllUsers";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path: 'mycart',
                 element: <MyCart></MyCart>
+            },
+            {
+                path: 'allusers',
+                element: <AllUsers></AllUsers>
             }
         ]
     }
