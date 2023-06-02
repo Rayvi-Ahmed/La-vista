@@ -2,10 +2,14 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import SocialLogin from "../SocialLogon/SocialLogin";
 const SignUp = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUserProfile } = useContext(AuthContext)
+    const navigate = useNavigate()
 
 
     const onSubmit = data => {
@@ -14,6 +18,33 @@ const SignUp = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser)
+                updateUserProfile(data.name, data.photoURL)
+                const saveUser = { name: data.name, email: data.email }
+                    .then(() => {
+                        fetch('http://localhost:5000/users', {
+                            method: "POST",
+                            headers: { "content-type": "application/json" },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset()
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User is created',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/')
+                                }
+                            })
+
+                    })
+
+                    .catch(error => console.log(error))
+
             })
     }
     return (
@@ -31,6 +62,13 @@ const SignUp = () => {
                             </label>
                             <input {...register("name", { required: true })} type="text" placeholder="your name" className="input input-bordered" />
                             {errors.name && <span className="text-red-500">Name is required</span>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Photo URL</span>
+                            </label>
+                            <input {...register("PhotoURL", { required: true })} type="text" placeholder="photo URL.." className="input input-bordered" />
+                            {errors.photoURL && <span className="text-red-500">Photo URL is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -55,6 +93,7 @@ const SignUp = () => {
                             <button className="btn btn-primary">Sign Up</button>
                         </div>
                     </form>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

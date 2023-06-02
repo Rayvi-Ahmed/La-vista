@@ -45,11 +45,12 @@ const MyCart = () => {
                 <button className="btn btn-accent">Pay</button>
             </div>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+                <table className="table w-full my-6">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Food Image</th>
+                            <th>Food Name</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -78,8 +79,8 @@ const MyCart = () => {
                                 </td>
                                 <td className="text-end">${item.price}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(item)} className="btn-lg p-2 rounded-md bg-red-600
-                                    text-white"><FaTrashAlt></FaTrashAlt></button>
+                                    <button onClick={() => handleDelete(item)} className="btn btn-lg p-3 rounded-xl bg-red-600
+                                    text-whiteb border-0 shadow-lg"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
                             </tr>)
                         }

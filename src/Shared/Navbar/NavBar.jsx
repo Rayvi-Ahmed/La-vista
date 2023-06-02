@@ -29,7 +29,16 @@ const NavBar = () => {
 
             </li>
 
-            {user ? <li><button onClick={handleLogout} className="btn btn-active bg-slate-400">Log out</button> </li> : <li><Link to={'/login'}>Log In</Link></li>
+            {user ?
+                <>
+                    <span>{user?.displayName}</span>
+                    <li><button onClick={handleLogout} className="btn btn-active bg-slate-400">Log out</button>
+                    </li>
+
+                </> :
+                <>
+                    <li><Link to={'/login'}>Log In</Link></li>
+                </>
             }
         </>
     return (
