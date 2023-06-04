@@ -10,7 +10,7 @@ const UseCart = () => {
 
     const { refetch, data: cart = [] } = useQuery({
         queryKey: ['carts', user?.email],
-        enabled: !loading,
+        enabled: !loading && !!user?.email && !!localStorage.getItem("access-token"),
         queryFn: async () => {
             const res = await axisSecure(`/carts?email=${user?.email}`)
             return res.data;

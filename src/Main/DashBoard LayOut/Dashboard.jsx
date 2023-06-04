@@ -23,7 +23,6 @@ const Dashboard = () => {
                             {/* <!-- Sidebar content here --> */}
                             <li><NavLink to={'/dashboard/home'}><FaHome></FaHome> Admin Home</NavLink></li>
                             <li><NavLink to={'/dashboard/addItem'}><FaUtensils></FaUtensils> Add item</NavLink></li>
-                            <li><NavLink to={'/dashboard/mycart'}><FaShoppingCart></FaShoppingCart> My Cart</NavLink></li>
                             <li><NavLink to={'/dashboard/manageitem'}><FaWallet></FaWallet>Manage Item</NavLink></li>
                             <li><NavLink to={'/dashboard/booking'}><FaBookmark></FaBookmark>Manage Bookings</NavLink></li>
                             <li><NavLink to={'/dashboard/allusers'}><FaUsers></FaUsers>All Users</NavLink></li>
