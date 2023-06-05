@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
+
 const AdminRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
     const [isadmin, isAdminLoading] = useAdmin()
